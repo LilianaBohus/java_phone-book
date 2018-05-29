@@ -2,6 +2,7 @@
 public class Nevjegy {
 	
 	private String nev;
+	private String telefonszam;
 	private String foglalkozas;
 	private String lakcim;
 	private String email;
@@ -12,6 +13,12 @@ public class Nevjegy {
 	}
 	public void setNev(String nev) {
 		this.nev = nev;
+	}
+	public String getTelefonszam() {
+		return telefonszam;
+	}
+	public void setTelefonszam(String telefonszam) {
+		this.telefonszam = telefonszam;
 	}
 	public String getFoglalkozas() {
 		return foglalkozas;
@@ -33,17 +40,20 @@ public class Nevjegy {
 	}
 	
 	// TIPP: Konstruktort generalni a Source --> Generate Constructor using fields... paranccsal tudunk.
-	public Nevjegy(String nev, String foglalkozas, String lakcim, String email) {
+	public Nevjegy(String nev, String telefonszam, String foglalkozas, String lakcim, String email) {
 		super();
 		this.nev = nev;
+		this.telefonszam = telefonszam;
 		this.foglalkozas = foglalkozas;
 		this.lakcim = lakcim;
 		this.email = email;
 	}
 	
-	// Osszehasonlitja a nevjegyet, amire meghivjak, a parameterben levovel, hogy egyeznek-e az attributumaik.
+	// Megnezi, hogy ket nevjegy megegyezik e (azaz az osszes attributumuk megegyezik).
+	// TIPP: Stringek osszehasonlitasra ne hasznaljuk az == operatort, hasznaljuk helyette az equals()-t!
 	public boolean equals(Nevjegy n) {
 		if (n.getNev().equals(this.getNev()) && 
+			n.getTelefonszam().equals(this.getTelefonszam()) &&
 			n.getFoglalkozas().equals(this.getFoglalkozas()) && 
 			n.getLakcim().equals(this.getLakcim()) &&
 			n.getEmail().equals(this.getEmail())){
