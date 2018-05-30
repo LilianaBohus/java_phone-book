@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -12,7 +13,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.plaf.basic.BasicSplitPaneUI.KeyboardResizeToggleHandler;
 import javax.swing.table.TableRowSorter;
 
 @SuppressWarnings("serial")
@@ -26,7 +26,7 @@ public class Frame extends JFrame {
 	
 	public static void main(String[] args) {
 		Frame ablak = new Frame();
-		
+		ablak.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
 	public Frame() {
@@ -80,7 +80,12 @@ public class Frame extends JFrame {
 				JFileChooser fileChooser = new JFileChooser();
 				if (fileChooser.showSaveDialog(frame) == JFileChooser.APPROVE_OPTION) {
 					File file = fileChooser.getSelectedFile();
-					telefonkonyv.lement(file);
+					try {
+						telefonkonyv.lement(file);
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					
 				}
 			}
@@ -100,6 +105,7 @@ public class Frame extends JFrame {
 			}
 		});
 		
+		// TODO fuggvenyek atirasa!!!
 		tKereso.getDocument().addDocumentListener(new DocumentListener() {
 			
 			@Override
@@ -107,7 +113,7 @@ public class Frame extends JFrame {
 				int eredmeny = 0;
 				if (telefonkonyv.keresNevSzerint(tKereso.getText())!=-1) {
 					tabla.setRowSelectionInterval(eredmeny, eredmeny);
-					// TODO az eredmeny  nicns atirkalva!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+					// TODO 
 				}
 				
 			}
@@ -115,7 +121,7 @@ public class Frame extends JFrame {
 			@Override
 			public void insertUpdate(DocumentEvent arg0) {
 				int eredmeny = telefonkonyv.keresNevSzerint(tKereso.getText());
-				// TODO itt is mashogy volt a kooooooood!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				// TODO 
 				if (eredmeny!=-1) {
 					tabla.setRowSelectionInterval(eredmeny, eredmeny);
 				}
@@ -127,7 +133,7 @@ public class Frame extends JFrame {
 				int eredmeny = 0;
 				if (telefonkonyv.keresNevSzerint(tKereso.getText())!=-1){
 					tabla.setRowSelectionInterval(eredmeny, eredmeny);
-					// TODO az eredmeny nincs atirkalva!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+					// TODO 
 		}
 				
 			}
