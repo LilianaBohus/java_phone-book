@@ -72,7 +72,7 @@ public class Form extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Nevjegy ujNevjegy = Nevjegy(tNev.getText(),
+				Nevjegy ujNevjegy = new Nevjegy(tNev.getText(),
 											tTelefonszam.getText(),
 											tFoglalkozas.getText(),
 											tLakcim.getText(),
